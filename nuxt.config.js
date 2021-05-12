@@ -48,6 +48,40 @@ export default {
         '@nuxtjs/pwa',
     ],
 
+    pwa: {
+        meta: {
+            title: 'AniC',
+            author: 'Matthew',
+        },
+        manifest: {
+            name: 'AniC',
+            short_name: 'AniC',
+            lang: 'en',
+            display: 'standalone',
+        },
+        workbox: {
+            runtimeCaching: [{
+                    urlPattern: 'https://fonts.googleapis.com/.*',
+                    handler: 'cacheFirst',
+                    method: 'GET',
+                    strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+                },
+                {
+                    urlPattern: 'https://fonts.gstatic.com/.*',
+                    handler: 'cacheFirst',
+                    method: 'GET',
+                    strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+                },
+                {
+                    urlPattern: 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js',
+                    handler: 'cacheFirst',
+                    method: 'GET',
+                    strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+                }
+            ]
+        }
+    },
+
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {}
 }
